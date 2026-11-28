@@ -138,3 +138,123 @@ footer {
   <a href= "#Berita">Berita</a>
   <a href= "#About">About</a>
 </nav>  
+<div class="container" id="home">
+
+  <div class="welcome">
+    <h2>Welcome To PinkPress</h2>
+    <p>Temukan informasi terbaru dan berita menarik dari berbagai kategori.</p>
+    <p>Stay informed, stay inspired!</p>
+</div>
+<h2>style="text-align:center;color:#c45c86" Today's Headlines</h2>
+<div> class="search">
+<input
+  type="text"
+  id="searchinput"
+  pleaceholder="Cari berita disini...🔎"
+  >
+</div>
+
+<div class="categories">
+  <button class="active" onclick="filterNews('Semua',this)">Semua</button>
+  <button onclick="filterNews('Teknoogi',this)">Teknologi</button>
+  <button onclick="filterNews('Pendidikan',this)">Pendidikan</button>
+  <button onclick="filterNews('Lingkungan',this)">Lingkungan</button>
+</div>
+<div class="news-grid" id="newList">
+   <div class="news-card" data-category="Teknologi">
+   <span class="tag">TEKNOLOGI</span>
+   <h3>Perkembangan Teknologi di Era Digital</h3>
+   <p>Teknologi digital semakin berkembang dan membantu manusia dalam melakukan berbagai aktivitas sehari-hari</p>
+   <button class="read" onclick="readNews(0)">Baca Selengkapnya</button>
+</div>
+<div class="news-card" data-category="Pendidikan">
+    <span class="tag">PENDIDIKAN</span>
+    <h3>Pentingnya Pendidikan bagi Generasi Muda</h3>
+    <p>Penddikan menjadi salah satu fondasi penting dalam membangun masadepan generasi muda.</p>
+    <button class="read" onclick="readNews(1)">Baca Selengkapnya</button>
+</div>
+<div class="news-card" data-category="Lingkungan">
+  <span class="tag">LINGUNGAN</span>
+  <h3>Menjaga Kebersihan Lingkungan</h3>
+  <p>Kebiasaan menjaga kebersihan dapat dimulai dari rumah dan lingkungan sekolah.</p>
+  <button class="read" onclick="readNews(2)"> Baca Selengkapnya</button>
+  </div>
+  
+ </div>
+</div>
+<footer id="about">
+  <h3> PinkPress Dialy News</h3>
+  <p>Created by Cey</p>
+  <p>2026 PinkPress. All Rights Reserved.</p>
+</footer>
+<script>
+  const articles = [
+    {
+      title:"Perkembangan Teknologi di Era Digital",
+      text: "Teknologi digital semakin berkembang dan membantu manusia dalam melakukan berbagai aktivitas sehari-hari. Internet, komputer, dan perangkat pintar menjadi bagian penting dalam kehidupan modern. Berita ini merupakan contoh konten edukasi untuk proyek PinkPress."
+    },
+    {
+        title: "Pentingnya Pendidikan bagi Generasi Muda",
+        text: "Pendidikan menjadi salah satu fondasi penting dalam membangun masa depan generasi muda. Dengan belajar, seseorang dapat mengembangkan pengetahuan, kreativitas, dan keterampilan. Berita ini merupakan contoh konten edukasi untuk proyek PinkPress."
+      }
+];
+
+function readNews(index) {
+    alert(articles[index].title + "\n\n" + articles[index].text);
+}
+
+let selectedCategory = "Semua";
+
+function filterNews(category, button) {
+    selectedCategory = category;
+
+    document.querySelectorAll(".categories button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+    searchNews();
+}
+
+function searchNews() {
+    const keyword = document.getElementById("searchInput")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll(".news-card");
+    let visible = 0;
+
+    cards.forEach(card => {
+        const category = card.dataset.category;
+        const matchesCategory =
+            selectedCategory === "Semua" ||
+            category === selectedCategory;
+
+        const matchesSearch =
+            card.innerText.toLowerCase().includes(keyword);
+
+        if (matchesCategory && matchesSearch) {
+            card.style.display = "block";
+            visible++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    let empty = document.getElementById("emptyMessage");
+
+    if (!empty) {
+        empty = document.createElement("p");
+        empty.id = "emptyMessage";
+        empty.className = "empty";
+        empty.innerText = "Berita tidak ditemukan ♡";
+        document.getElementById("newsList").appendChild(empty);
+    }
+
+    empty.style.display = visible === 0 ? "block" : "none";
+}
+
+document.getElementById("searchInput")
+    .addEventListener("input", searchNews);
+</script>
+
+</body>
+</html>
