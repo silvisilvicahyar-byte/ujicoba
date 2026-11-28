@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id"
+<head>
+<meta charset="UTF-8"
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinkPress - Dialy News</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serief;
+  background: linear-gradient(135deg, #ffe5ef, #fff5f8);
+  color: 375445a
+}
+  header {
+    background: #f7b8d0;
+    padding: 25px;
+    text-align: center;
+}
+header h1{
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  margin: 5px;
+}
+hearder p {
+  color: white;
+}
+nav {
+  background: white;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 3px 10px #eecbd9;
+}
+nav a {
+  color: #c45c86;
+  text-decoration: none;
+  margin: 12px;
+  font-weight: blod;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px;
+}
+.welcome h {
+  background: #f9c9dc;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  marign-bottom: 25px;
+}
+.welcome h2 {
+  color: #a83f70;
+}
+.search {
+  text-align: center;
+  marign: 25px 0;
+}
+.search input {
+  width: 90%
+  max-width: 500px;
+  padding: 14px;
+  boeder: 2px solid #f2b5ce;
+  border-radius: 25px;
+  outline: none;
+}
+.categories {
+  text-align: center;
+  marigin-bottom: 25px;
+}
+.categories button {
+  background: #f39c5;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  marign: 5px;
+  border-radius: 20px;
+  crusor: pointer;
+}
+.categories button:hover,
+.categories button.active {
+  background: #c95e8b;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 20px:
+}
+.news-card:hover {
+  transform: translateY(-5px);
+}
+.news-card h3 {
+color: #c45c86;
+}
+.news-card p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+.tag {
+  color: #d16e98;
+  font-size: 12px;
+  font-weight: blod;
+}
+.read {
+  background: #f3b2cb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+footer {
+  background: #f7b8d0;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  marign-top: 40px;
+}
+.empty {
+  text-align: center;
+  grid-column: 1 / -1;
+}
+  
+</style>
+</head>
+
+<body>
+  
+<header> 
+  <h1> PinkPress </h1>
+  <p> Your Dialy News, Your Dialy Inspiration. </p>
+</header>
+<nav>
+  <a href= "#home">Home</a>
+  <a href= "#Berita">Berita</a>
+  <a href= "#About">About</a>
+</nav>  
