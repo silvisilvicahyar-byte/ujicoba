@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You ♡</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center,
+        #ffd6e7, #ff9fbd, #e85d88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, serif;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-shape {
+    position: absolute;
+    width: 480px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 18px #fff);
+}
+
+.love {
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 8px #ff3f83;
+    animation: float 3s ease-in-out infinite;
+}
+
+.center-text {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    color: #d92d68;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: bold;
+    text-shadow: 0 0 15px white;
+    animation: beat 1.5s infinite;
+}
+
+.center-text p {
+    font-size: 14px;
+    margin-top: 10px;
+    letter-spacing: 3px;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -30px;
+    color: white;
+    animation: fall linear infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(3deg);
+    }
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .heart-shape {
+        transform: scale(.72);
+    }
+
+    .love {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="heart-shape" id="heart"></div>
+
+    <div class="center-text">
+        I LOVE YOU ♡
+        <p>SO MUCH</p>
+    </div>
+</div>
+
+<script>
+const heart = document.getElementById("heart");
+
+const colors = ["#ffffff", "#ff276b", "#ff75a5", "#d9235e"];
+
+for (let i = 0; i < 220; i++) {
+    const t = Math.PI * 2 * Math.random();
+
+    // Persamaan bentuk hati
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t)
+        - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    // Isi bagian dalam hati
+    const scale = Math.sqrt(Math.random());
+
+    const love = document.createElement("span");
+    love.className = "love";
+    love.textContent = "I LOVE YOU";
+
+    love.style.left = `calc(50% + ${x * scale * 13}px)`;
+    love.style.top = `calc(50% + ${y * scale * 13}px)`;
+    love.style.color = colors[Math.floor(Math.random() * colors.length)];
+    love.style.animationDelay = Math.random() * 3 + "s";
+
+    heart.appendChild(love);
+}
+
+// Hujan hati
+for (let i = 0; i < 35; i++) {
+    const rain = document.createElement("span");
+    rain.className = "falling-heart";
+    rain.textContent = "♥";
+
+    rain.style.left = Math.random() * 100 + "vw";
+    rain.style.fontSize = (12 + Math.random() * 18) + "px";
+    rain.style.animationDuration = (4 + Math.random() * 6) + "s";
+    rain.style.animationDelay = Math.random() * 8 + "s";
+
+    document.body.appendChild(rain);
+}
+</script>
+</body>
+</html>
